@@ -36,7 +36,8 @@ libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.0"
 Gatekeeper is a library which guards your publicly accessible internal implementations. 
 
 ### History
-Library maintainers have a hard time to keep internal implementations internal and prevent it to be accessible by library users.
+Library maintainers have a hard time to keep internal implementations internal and prevent it to be accessible by library users. 
+The library maintainer cannot easily change internal implementations as it may lead into breaking changes for the library users.
 A straight forward method for library maintainers would be making classes package protected and accessible through public api's so-called Service classes.
 Encapsulation internal api's and exposing it through service classes is the preferred way but cannot be achieved in some use cases. Restrictions by Java Modules will not work if the end-user is not using java modules. 
 Gatekeeper will ensure that these internal implementations remain internal by validating the caller. You as a library developer can choose who is allowed to call your classes.
