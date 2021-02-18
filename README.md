@@ -8,7 +8,18 @@
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Agatekeeper)
 
-# Gatekeeper 🔐
+# Gatekeeper 🔐 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Easily%20protect%20your%20publicly%20accessible%20internal%20implementations%20with%20Gatekeeper&url=https://github.com/Hakky54/gatekeeper&via=hakky541&hashtags=security,developer,java,gatekeeper)
+![braces-clipart-punctuation-6-original](img/gatekeepers.jpg)
+
+## Introduction
+Gatekeeper is a library which guards your publicly accessible internal implementations.
+
+### History
+Library maintainers have a hard time to keep internal implementations internal and prevent it to be accessible by library users.
+The library maintainer cannot easily change internal implementations as it may lead into breaking changes for the library users.
+A straight forward method for library maintainers would be making classes package protected and accessible through public api's so-called Service classes.
+Encapsulation internal api's and exposing it through service classes is the preferred way but cannot be achieved in some use cases. Restrictions by Java Modules will not work if the end-user is not using java modules.
+Gatekeeper will ensure that these internal implementations remain internal by validating the caller. You as a library developer can choose who is allowed to call your classes.
 
 # Install library with:
 ### Install with [Maven](https://mvnrepository.com/artifact/io.github.hakky54/gatekeeper)
@@ -31,16 +42,6 @@ libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.1"
 ```xml
 <dependency org="io.github.hakky54" name="gatekeeper" rev="1.0.1" />
 ```
-
-## Introduction
-Gatekeeper is a library which guards your publicly accessible internal implementations. 
-
-### History
-Library maintainers have a hard time to keep internal implementations internal and prevent it to be accessible by library users. 
-The library maintainer cannot easily change internal implementations as it may lead into breaking changes for the library users.
-A straight forward method for library maintainers would be making classes package protected and accessible through public api's so-called Service classes.
-Encapsulation internal api's and exposing it through service classes is the preferred way but cannot be achieved in some use cases. Restrictions by Java Modules will not work if the end-user is not using java modules. 
-Gatekeeper will ensure that these internal implementations remain internal by validating the caller. You as a library developer can choose who is allowed to call your classes.
 
 ## Usage
 **Protected by Gatekeeper - Internal API**
@@ -80,3 +81,13 @@ public class App {
     
 }
 ```
+## Contributing
+
+There are plenty of ways to contribute to this project:
+
+* Give it a star
+* Share it with a [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Easily%20protect%20your%20publicly%20accessible%20internal%20implementations%20with%20Gatekeeper&url=https://github.com/Hakky54/gatekeeper&via=hakky541&hashtags=security,developer,java,gatekeeper)
+* Submit a PR
+
+## Resources
+- [Gatekeeper image](https://innovationcloud.com/blog/the-gatekeepers-heavy-burden-of-decision-making-explained.html)
