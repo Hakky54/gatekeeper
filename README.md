@@ -16,20 +16,20 @@
 <dependency>
     <groupId>io.github.hakky54</groupId>
     <artifactId>gatekeeper</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 ### Install with Gradle
 ```groovy
-implementation 'io.github.hakky54:gatekeeper:1.0.0'
+implementation 'io.github.hakky54:gatekeeper:1.0.1'
 ```
 ### Install with Scala SBT
 ```
-libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.0"
+libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.1"
 ```
 ### Install with Apache Ivy
 ```xml
-<dependency org="io.github.hakky54" name="gatekeeper" rev="1.0.0" />
+<dependency org="io.github.hakky54" name="gatekeeper" rev="1.0.1" />
 ```
 
 ## Introduction
