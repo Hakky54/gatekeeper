@@ -44,7 +44,7 @@ libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.1"
 ```
 
 ## Usage
-**Protected by Gatekeeper - Internal API**
+**Internal API - Protected by Gatekeeper**
 ```java
 import nl.altindag.gatekeeper.Gatekeeper;
 
@@ -56,7 +56,7 @@ public class FooInternal {
     }
 }
 ```
-**Exposed - Public API**
+**Public API - Exposed**
 ```java
 public class FooService {
     
