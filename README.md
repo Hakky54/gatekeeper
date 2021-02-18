@@ -43,7 +43,7 @@ Encapsulation internal api's and exposing it through service classes is the pref
 Gatekeeper will ensure that these internal implementations remain internal by validating the caller. You as a library developer can choose who is allowed to call your classes.
 
 ## Usage
-
+**Protected by Gatekeeper - Internal API**
 ```java
 import nl.altindag.gatekeeper.Gatekeeper;
 
@@ -55,11 +55,25 @@ public class FooInternal {
     }
 }
 ```
+**Exposed - Public API**
+```java
+public class FooService {
+    
+    private final FooInternal fooInternal = new FooInternal();
 
+    public String hello() {
+        return fooInternal.hello();
+    }
+}
+```
 ```java
 public class App {
 
     public static void main(String[] args) {
+        FooService fooService = new FooService();
+        String hello = fooService.hello();
+        System.out.println(hello); // ---> prints Hello
+        
         FooInternal fooInternal = new FooInternal();
         fooInternal.hello(); // ---> throws a (runtime) GatekeeperException with an explaining message
     }
