@@ -19,17 +19,16 @@ package nl.altindag.gatekeeper;
 import nl.altindag.gatekeeper.exception.GatekeeperException;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * @author Hakan Altindag
  */
+@SuppressWarnings("rawtypes")
 public final class Gatekeeper {
 
     private Gatekeeper() {}
 
-    @SuppressWarnings("rawtypes")
     public static void ensureCallerIsAnyOf(Class... allowedCallerClasses) {
         if (allowedCallerClasses == null || allowedCallerClasses.length == 0) {
             throw new IllegalArgumentException("At least one allowed caller class should be present");
@@ -39,16 +38,25 @@ public final class Gatekeeper {
         StackTraceElement caller = stackTrace[3];
         StackTraceElement target = stackTrace[2];
 
-        List<Class> classes = Arrays.asList(allowedCallerClasses);
+        boolean isCallerAllowedToCallTarget = isCallerAllowedToCallTarget(allowedCallerClasses, caller.getClassName());
 
-        if (classes.stream().anyMatch(allowedCallerClass -> !allowedCallerClass.getName().equals(caller.getClassName()))) {
+        if (!isCallerAllowedToCallTarget) {
             throw new GatekeeperException(String.format(
                     "Class [%s] tried to call a restricted method. Only classes of the type [%s] are allowed to call the method [%s] from class [%s]",
                     caller.getClassName(),
-                    classes.stream().map(Class::getName).collect(Collectors.joining(", ")),
+                    Arrays.stream(allowedCallerClasses).map(Class::getName).collect(Collectors.joining(", ")),
                     target.getMethodName(),
                     target.getClassName()));
         }
+    }
+
+    private static boolean isCallerAllowedToCallTarget(Class[] allowedCallerClasses, String callerClassName) {
+        for (Class allowedCallerClass : allowedCallerClasses) {
+            if (allowedCallerClass.getName().equals(callerClassName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

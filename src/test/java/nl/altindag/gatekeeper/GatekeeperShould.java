@@ -24,6 +24,19 @@ class GatekeeperShould {
     }
 
     @Test
+    void ensureCallerIsAnyOfMultipleTypes() {
+        class Foo {
+            String foo() {
+                Gatekeeper.ensureCallerIsAnyOf(ArrayList.class, GatekeeperShould.class);
+                return "foo";
+            }
+        }
+
+        String foo = new Foo().foo();
+        assertThat(foo).isEqualTo("foo");
+    }
+
+    @Test
     void throwExceptionWhenGatekeeperIsCalledFromACallerThatIsNotSpecifiedAsAllowedCaller() {
         class Foo {
             String foo() {
@@ -38,7 +51,7 @@ class GatekeeperShould {
                 .isInstanceOf(GatekeeperException.class)
                 .hasMessage("Class [org.assertj.core.api.ThrowableAssert] tried to call a restricted method. " +
                             "Only classes of the type [java.util.ArrayList] are allowed to call the method [foo] from " +
-                            "class [nl.altindag.gatekeeper.GatekeeperShould$2Foo]");
+                            "class [nl.altindag.gatekeeper.GatekeeperShould$3Foo]");
     }
 
     @Test
