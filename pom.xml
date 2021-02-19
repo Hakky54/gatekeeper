@@ -4,7 +4,7 @@
 
     <groupId>io.github.hakky54</groupId>
     <artifactId>gatekeeper</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -23,7 +23,7 @@
         <url>https://github.com/Hakky54/gatekeeper</url>
         <connection>scm:git:git@github.com:Hakky54/gatekeeper.git</connection>
         <developerConnection>scm:git:git@github.com:Hakky54/gatekeeper.git</developerConnection>
-        <tag>v1.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
