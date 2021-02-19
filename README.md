@@ -27,20 +27,20 @@ Gatekeeper will ensure that these internal implementations remain internal by va
 <dependency>
     <groupId>io.github.hakky54</groupId>
     <artifactId>gatekeeper</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 ### Install with Gradle
 ```groovy
-implementation 'io.github.hakky54:gatekeeper:1.0.1'
+implementation 'io.github.hakky54:gatekeeper:1.0.2'
 ```
 ### Install with Scala SBT
 ```
-libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.1"
+libraryDependencies += "io.github.hakky54" % "gatekeeper" % "1.0.2"
 ```
 ### Install with Apache Ivy
 ```xml
-<dependency org="io.github.hakky54" name="gatekeeper" rev="1.0.1" />
+<dependency org="io.github.hakky54" name="gatekeeper" rev="1.0.2" />
 ```
 
 ## Usage
