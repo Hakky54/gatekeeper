@@ -34,9 +34,9 @@ public final class Gatekeeper {
             throw new IllegalArgumentException("At least one allowed caller class should be present");
         }
 
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        StackTraceElement caller = stackTrace[3];
-        StackTraceElement target = stackTrace[2];
+        StackTraceElement[] stackTrace = new Exception().getStackTrace();
+        StackTraceElement caller = stackTrace[2];
+        StackTraceElement target = stackTrace[1];
 
         boolean isCallerAllowedToCallTarget = isCallerAllowedToCallTarget(allowedCallerClasses, caller.getClassName());
 
