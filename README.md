@@ -21,6 +21,9 @@ A straight forward method for library maintainers would be making classes packag
 Encapsulation internal api's and exposing it through service classes is the preferred way but cannot be achieved in some use cases. Restrictions by Java Modules will not work if the end-user is not using java modules.
 Gatekeeper will ensure that these internal implementations remain internal by validating the caller. You as a library developer can choose who is allowed to call your classes.
 
+### Minimum requirements:
+- Java 8
+
 # Install library with:
 ### Install with [Maven](https://mvnrepository.com/artifact/io.github.hakky54/gatekeeper)
 ```xml
@@ -81,6 +84,15 @@ public class App {
     
 }
 ```
+## Bulletproof?
+This library provides a protection by checking the caller at runtime, but it is sadly not 100% bulletproof. It just makes it a bit tougher for the end-user to use the protected classes. 
+Unfortunately this protection can be bypassed with two methods:
+1. Calling the protected class with a class that is identical to specified allowable class.
+2. Overriding the jar with a modified version which doesn't validate at all.
+
+You should know about these use cases before considering using this library. It cannot give 100% protection if the end-user is using one of the two methods to bypass it. 
+If you are ok with that, go ahead or else I would recommend to use java's Sealed classes which are available from Java 15 onwards.
+
 ## Contributing
 
 There are plenty of ways to contribute to this project:
