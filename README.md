@@ -87,7 +87,7 @@ public class App {
 ## Bulletproof?
 This library provides a protection by checking the caller at runtime, but it is sadly not 100% bulletproof. It just makes it a bit tougher for the end-user to use the protected classes. 
 Unfortunately this protection can be bypassed with two methods:
-1. Calling the protected class with a class that is identical to specified allowable class.
+1. Calling the protected class with a class that has the same class name and package to specified allowable class.
 2. Overriding the jar with a modified version which doesn't validate at all.
 
 You should know about these use cases before considering using this library. It cannot give 100% protection if the end-user is using one of the two methods to bypass it. 
