@@ -34,29 +34,37 @@ public final class Gatekeeper {
             throw new IllegalArgumentException("At least one allowed caller class should be present");
         }
 
-        StackTraceElement[] stackTrace = new Exception().getStackTrace();
-        StackTraceElement caller = stackTrace[2];
-        StackTraceElement target = stackTrace[1];
-
-        boolean isCallerAllowedToCallTarget = isCallerAllowedToCallTarget(allowedCallerClasses, caller.getClassName());
+        Class<?> caller = internalSecurityManager.getCallerClassName(3);
+        boolean isCallerAllowedToCallTarget = isCallerAllowedToCallTarget(allowedCallerClasses, caller);
 
         if (!isCallerAllowedToCallTarget) {
+            StackTraceElement[] stackTrace = new Exception().getStackTrace();
+            StackTraceElement target = stackTrace[1];
             throw new GatekeeperException(String.format(
                     "Class [%s] tried to call a restricted method. Only classes of the type [%s] are allowed to call the method [%s] from class [%s]",
-                    caller.getClassName(),
+                    caller.getName(),
                     Arrays.stream(allowedCallerClasses).map(Class::getName).collect(Collectors.joining(", ")),
                     target.getMethodName(),
                     target.getClassName()));
         }
     }
 
-    private static boolean isCallerAllowedToCallTarget(Class[] allowedCallerClasses, String callerClassName) {
+    private static boolean isCallerAllowedToCallTarget(Class[] allowedCallerClasses, Class callerClass) {
         for (Class allowedCallerClass : allowedCallerClasses) {
-            if (allowedCallerClass.getName().equals(callerClassName)) {
+            if (allowedCallerClass == callerClass) {
                 return true;
             }
         }
         return false;
     }
+    
+    private static class InternalSecurityManager extends SecurityManager {
+        public Class<?> getCallerClassName(int callStackDepth) {
+            return getClassContext()[callStackDepth];
+        }
+    }
+
+    private final static InternalSecurityManager internalSecurityManager =
+        new InternalSecurityManager();
 
 }
