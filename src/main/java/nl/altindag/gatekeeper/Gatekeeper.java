@@ -24,14 +24,13 @@ import java.util.stream.Collectors;
 /**
  * @author Hakan Altindag
  */
-@SuppressWarnings("rawtypes")
 public final class Gatekeeper {
 
     private static final InternalSecurityManager SECURITY_MANAGER = new InternalSecurityManager();
 
     private Gatekeeper() {}
 
-    public static void ensureCallerIsAnyOf(Class... allowedCallerClasses) {
+    public static void ensureCallerIsAnyOf(Class<?>... allowedCallerClasses) {
         if (allowedCallerClasses == null || allowedCallerClasses.length == 0) {
             throw new IllegalArgumentException("At least one allowed caller class should be present");
         }
