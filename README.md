@@ -30,7 +30,7 @@ Gatekeeper will ensure that these internal implementations remain internal by va
 <dependency>
     <groupId>io.github.hakky54</groupId>
     <artifactId>gatekeeper</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 ### Install with Gradle
