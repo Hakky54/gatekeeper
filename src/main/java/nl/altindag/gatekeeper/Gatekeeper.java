@@ -49,8 +49,8 @@ public final class Gatekeeper {
         }
     }
 
-    private static boolean isCallerAllowedToCallTarget(Class[] allowedCallerClasses, Class callerClass) {
-        for (Class allowedCallerClass : allowedCallerClasses) {
+    private static boolean isCallerAllowedToCallTarget(Class<?>[] allowedCallerClasses, Class<?> callerClass) {
+        for (Class<?> allowedCallerClass : allowedCallerClasses) {
             if (allowedCallerClass == callerClass) {
                 return true;
             }
