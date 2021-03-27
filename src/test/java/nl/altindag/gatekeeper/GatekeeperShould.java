@@ -49,9 +49,9 @@ class GatekeeperShould {
 
         assertThatThrownBy(foo::foo)
                 .isInstanceOf(GatekeeperException.class)
-                .hasMessage("Class [org.assertj.core.api.ThrowableAssert] tried to call a restricted method. " +
-                            "Only classes of the type [java.util.ArrayList] are allowed to call the method [foo] from " +
-                            "class [nl.altindag.gatekeeper.GatekeeperShould$3Foo]");
+                .hasMessageMatching("Class (.*) tried to call a restricted method. " +
+                        "Only classes of the type \\[java.util.ArrayList\\] are allowed to call the method \\[foo\\] from " +
+                        "class \\[nl.altindag.gatekeeper.GatekeeperShould\\$3Foo\\]");
     }
 
     @Test

@@ -27,6 +27,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("rawtypes")
 public final class Gatekeeper {
 
+    private static final InternalSecurityManager SECURITY_MANAGER = new InternalSecurityManager();
+
     private Gatekeeper() {}
 
     public static void ensureCallerIsAnyOf(Class... allowedCallerClasses) {
@@ -34,12 +36,11 @@ public final class Gatekeeper {
             throw new IllegalArgumentException("At least one allowed caller class should be present");
         }
 
-        Class<?> caller = internalSecurityManager.getCallerClassName(3);
+        Class<?> caller = SECURITY_MANAGER.getCallerClassName(3);
         boolean isCallerAllowedToCallTarget = isCallerAllowedToCallTarget(allowedCallerClasses, caller);
 
         if (!isCallerAllowedToCallTarget) {
-            StackTraceElement[] stackTrace = new Exception().getStackTrace();
-            StackTraceElement target = stackTrace[1];
+            StackTraceElement target = new Exception().getStackTrace()[1];
             throw new GatekeeperException(String.format(
                     "Class [%s] tried to call a restricted method. Only classes of the type [%s] are allowed to call the method [%s] from class [%s]",
                     caller.getName(),
@@ -57,14 +58,13 @@ public final class Gatekeeper {
         }
         return false;
     }
-    
+
     private static class InternalSecurityManager extends SecurityManager {
+
         public Class<?> getCallerClassName(int callStackDepth) {
             return getClassContext()[callStackDepth];
         }
-    }
 
-    private final static InternalSecurityManager internalSecurityManager =
-        new InternalSecurityManager();
+    }
 
 }
