@@ -1,6 +1,5 @@
 [![Actions Status](https://github.com/Hakky54/gatekeeper/workflows/Build/badge.svg)](https://github.com/Hakky54/gatekeeper/actions)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Agatekeeper&metric=security_rating)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Agatekeeper)
-[![Known Vulnerabilities](https://snyk.io/test/github/Hakky54/gatekeeper/badge.svg)](https://snyk.io/test/github/Hakky54/gatekeeper)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Agatekeeper&metric=coverage)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Agatekeeper)
 [![Apache2 license](https://img.shields.io/badge/license-Aache2.0-blue.svg)](https://github.com/Hakky54/gatekeeper/blob/master/LICENSE)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hakky54/gatekeeper/badge.svg)](https://mvnrepository.com/artifact/io.github.hakky54/gatekeeper)
